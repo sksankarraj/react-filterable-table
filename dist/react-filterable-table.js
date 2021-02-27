@@ -175,7 +175,6 @@ return /******/ (function(modules) { // webpackBootstrap
 				// Keep track of shift key
 				window.addEventListener("keydown", this.keydownEventListener, false);
 				window.addEventListener("keyup", this.keyupEventListener, false);
-				window.addEventListener("moodown", this.keyupEventListener, false);
 			}
 		}, {
 			key: 'componentWillUnmount',
@@ -480,6 +479,7 @@ return /******/ (function(modules) { // webpackBootstrap
 						updateFilter: this.updateFilter,
 						updateSort: this.updateSort,
 						filter: this.state.filter,
+						filterPlaceholder: this.props.filterPlaceholder,
 						exactFilters: this.state.exactFilters,
 						removeExactFilter: this.removeExactFilter,
 						pageSize: this.state.pageSize,
@@ -899,7 +899,7 @@ return /******/ (function(modules) { // webpackBootstrap
 							_react2.default.createElement(
 								'span',
 								{ className: 'filter-container' },
-								_react2.default.createElement('input', { type: 'text', className: 'form-control filter-input', value: filter, onChange: this.filterChanged, ref: 'filter', placeholder: 'Filter', autoFocus: this.props.autofocusFilter }),
+								_react2.default.createElement('input', { type: 'text', className: 'form-control filter-input', value: filter, onChange: this.filterChanged, ref: 'filter', placeholder: this.props.filterPlaceholder, autoFocus: this.props.autofocusFilter }),
 								_react2.default.createElement(
 									'span',
 									{ className: 'close clear-filter', onClick: function onClick() {
@@ -962,55 +962,38 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
 	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _ExactFilter = __webpack_require__(9);
+
+	var _ExactFilter2 = _interopRequireDefault(_ExactFilter);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ExactFilter = __webpack_require__(9);
-
-	var ExactFilters = function (_React$Component) {
-		_inherits(ExactFilters, _React$Component);
-
-		function ExactFilters(props) {
-			_classCallCheck(this, ExactFilters);
-
-			return _possibleConstructorReturn(this, (ExactFilters.__proto__ || Object.getPrototypeOf(ExactFilters)).call(this, props));
-		}
-
-		_createClass(ExactFilters, [{
-			key: 'render',
-			value: function render() {
-				var _props = this.props,
-				    exactFilters = _props.exactFilters,
-				    removeExactFilter = _props.removeExactFilter;
+	function ExactFilters(props) {
+		var _props = this.props,
+		    exactFilters = _props.exactFilters,
+		    removeExactFilter = _props.removeExactFilter;
 
 
-				var filters = exactFilters.map(function (filter, i) {
-					return _react2.default.createElement(ExactFilter, { filter: filter, removeFilter: removeExactFilter, key: i });
-				});
+		var filters = exactFilters.map(function (filter, i) {
+			return _react2.default.createElement(_ExactFilter2.default, { filter: filter, removeFilter: removeExactFilter, key: i });
+		});
 
-				return _react2.default.createElement(
-					'div',
-					{ className: 'exact-filters' },
-					filters
-				);
-			}
-		}]);
+		return _react2.default.createElement(
+			'div',
+			{ className: 'exact-filters' },
+			filters
+		);
+	}
 
-		return ExactFilters;
-	}(_react2.default.Component);
-
-	module.exports = ExactFilters;
+	exports.default = ExactFilters;
 
 /***/ }),
 /* 9 */
@@ -1018,7 +1001,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
 	var _react = __webpack_require__(3);
 
@@ -1026,57 +1011,34 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	function ExactFilter(props) {
+		var filter = props.filter,
+		    removeFilter = props.removeFilter;
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ExactFilter = function (_React$Component) {
-		_inherits(ExactFilter, _React$Component);
-
-		function ExactFilter(props) {
-			_classCallCheck(this, ExactFilter);
-
-			return _possibleConstructorReturn(this, (ExactFilter.__proto__ || Object.getPrototypeOf(ExactFilter)).call(this, props));
-		}
-
-		_createClass(ExactFilter, [{
-			key: "render",
-			value: function render() {
-				var _props = this.props,
-				    filter = _props.filter,
-				    removeFilter = _props.removeFilter;
-
-
-				return _react2.default.createElement(
+		return _react2.default.createElement(
+			"span",
+			{ className: "filter-item" },
+			_react2.default.createElement(
+				"span",
+				{ className: "filter-item-title" },
+				_react2.default.createElement(
 					"span",
-					{ className: "filter-item" },
-					_react2.default.createElement(
-						"span",
-						{ className: "filter-item-title" },
-						_react2.default.createElement(
-							"span",
-							{ className: "filter-item-remove", onClick: function onClick(e) {
-									return removeFilter(filter, e);
-								} },
-							_react2.default.createElement("span", { className: "fa fa-times" })
-						),
-						filter.name
-					),
-					_react2.default.createElement(
-						"span",
-						{ className: "filter-item-value" },
-						filter.value
-					)
-				);
-			}
-		}]);
+					{ className: "filter-item-remove", onClick: function onClick(e) {
+							return removeFilter(filter, e);
+						} },
+					_react2.default.createElement("span", { className: "fa fa-times" })
+				),
+				filter.name
+			),
+			_react2.default.createElement(
+				"span",
+				{ className: "filter-item-value" },
+				filter.value
+			)
+		);
+	}
 
-		return ExactFilter;
-	}(_react2.default.Component);
-
-	module.exports = ExactFilter;
+	exports.default = ExactFilter;
 
 /***/ }),
 /* 10 */

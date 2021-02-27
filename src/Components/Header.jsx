@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import ExactFilters from './ExactFilters'; 
+import ExactFilters from './ExactFilters';
 
 class Header extends React.Component {
 	constructor(props) {
@@ -40,11 +40,11 @@ class Header extends React.Component {
 		);
 
 		let perPageSelect = this.props.pagersVisible !== false && this.props.pageSizes && this.props.pageSizes.length > 0
-			?  <select className="form-control pull-sm-right pull-md-right pull-lg-right" onChange={updatePageSize} value={this.props.pageSize}>
-					{this.props.pageSizes.map((p, i) =>
-						<option value={p} key={i}>{p} per page</option>
-					)}
-				</select>
+			? <select className="form-control pull-sm-right pull-md-right pull-lg-right" onChange={updatePageSize} value={this.props.pageSize}>
+				{this.props.pageSizes.map((p, i) =>
+					<option value={p} key={i}>{p} per page</option>
+				)}
+			</select>
 			: null;
 
 		return (
@@ -54,7 +54,7 @@ class Header extends React.Component {
 				<div className="row header-row">
 					<div className="col-sm-3 filter-container">
 						<span className="filter-container">
-							<input type="text" className="form-control filter-input" value={filter} onChange={this.filterChanged} ref="filter" placeholder="Filter" autoFocus={this.props.autofocusFilter} />
+							<input type="text" className="form-control filter-input" value={filter} onChange={this.filterChanged} ref="filter" placeholder={this.props.filterPlaceholder} autoFocus={this.props.autofocusFilter} />
 							<span className="close clear-filter" onClick={() => this.filterChanged('')}>
 								&times;
 							</span>
@@ -73,7 +73,7 @@ class Header extends React.Component {
 						<ExactFilters
 							exactFilters={this.props.exactFilters}
 							removeExactFilter={this.props.removeExactFilter}
-							/>
+						/>
 					</div>
 					<div className="col-sm-4 hidden-xs">
 						{this.props.pager}

@@ -8,10 +8,10 @@ const less = require('gulp-less');
 
 
 // Build the main library
-gulp.task('build', function() {
+gulp.task('build', function () {
 	console.log("Building!");
 
-	webpack(webpackConfig, function(err, stats) {
+	webpack(webpackConfig, function (err, stats) {
 		if (err) throw new gutil.PluginError("webpack", err);
 		gutil.log("[webpack]", stats.toString({
 			// output options
@@ -20,16 +20,16 @@ gulp.task('build', function() {
 	});
 	return gulp.src('./src/**/*.less')
 		.pipe(less({
-			paths: [ path.join(__dirname, 'dist') ]
+			paths: [path.join(__dirname, 'dist')]
 		}))
 		.pipe(gulp.dest('./dist'));
 });
 
 // Build the example
-gulp.task('example', function() {
+gulp.task('example', function () {
 	console.log("Building examples!");
 
-	webpack(webpackExampleConfig, function(err, stats) {
+	webpack(webpackExampleConfig, function (err, stats) {
 		if (err) throw new gutil.PluginError("webpack", err);
 		gutil.log("[webpack]", stats.toString({
 			// output options
@@ -43,6 +43,6 @@ gulp.task('example', function() {
 
 });
 
-gulp.task('watch', ['build'], function() {
+gulp.task('watch', ['build'], function () {
 	gulp.watch('**/*.js*', ['build']);
 });

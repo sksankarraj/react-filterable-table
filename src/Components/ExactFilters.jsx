@@ -1,27 +1,19 @@
 import React from 'react';
-let ExactFilter = require('./ExactFilter');
+import ExactFilter from './ExactFilter';
 
-class ExactFilters extends React.Component {
-	constructor(props) {
-		super(props)
-	}
+function ExactFilters(props) {
 
-	render() {
+	let { exactFilters, removeExactFilter } = props;
 
-		let { exactFilters, removeExactFilter } = this.props;
+	let filters = exactFilters.map((filter, i) => {
+		return <ExactFilter filter={filter} removeFilter={removeExactFilter} key={i} />;
+	});
 
-		let filters = exactFilters.map((filter, i) => {
-			return <ExactFilter filter={filter} removeFilter={removeExactFilter} key={i} />;
-		});
-
-		return (
-			<div className="exact-filters">
-				{filters}
-			</div>
-		);
-
-	}
-
+	return (
+		<div className="exact-filters">
+			{filters}
+		</div>
+	);
 }
 
-module.exports = ExactFilters;
+export default ExactFilters;

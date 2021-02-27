@@ -13,7 +13,7 @@ class FilterableTable extends React.Component {
 		this.state = {
 			loading: false,
 			entries: this.props.data || [],
-			sortFields: [ { name: this.props.initialSort, reverse: (typeof this.props.initialSortDir === "boolean") ? !this.props.initialSortDir : false }],
+			sortFields: [{ name: this.props.initialSort, reverse: (typeof this.props.initialSortDir === "boolean") ? !this.props.initialSortDir : false }],
 			filter: '',
 			exactFilters: [],
 			serverError: false,
@@ -119,17 +119,17 @@ class FilterableTable extends React.Component {
 		} else {
 			// Load data from endpoint
 			axios.get(this.props.dataEndpoint)
-			.then(response => response.data)
-			.then(entries => {
-				this.setData(entries);
-			})
-			.catch(error => {
-				this.setState({
-					serverError: true,
-					loading: false
+				.then(response => response.data)
+				.then(entries => {
+					this.setData(entries);
+				})
+				.catch(error => {
+					this.setState({
+						serverError: true,
+						loading: false
+					});
+					console.log(error);
 				});
-				console.log(error);
-			});
 		}
 
 	}
@@ -280,7 +280,7 @@ class FilterableTable extends React.Component {
 
 		let loading = this.state.loading &&
 			(
-				this.props.loadingMessage || 
+				this.props.loadingMessage ||
 				<div className="well text-center">
 					Loading...
 				</div>
@@ -295,7 +295,7 @@ class FilterableTable extends React.Component {
 			)
 
 		let noRecordsMessage = (!this.state.serverError && !this.state.loading && this.state.entries.length === 0) &&
-		  	<div>
+			<div>
 				{this.props.noRecordsMessage}
 			</div>
 
@@ -362,6 +362,7 @@ class FilterableTable extends React.Component {
 					updateFilter={this.updateFilter}
 					updateSort={this.updateSort}
 					filter={this.state.filter}
+					filterPlaceholder={this.props.filterPlaceholder}
 					exactFilters={this.state.exactFilters}
 					removeExactFilter={this.removeExactFilter}
 					pageSize={this.state.pageSize}
@@ -378,7 +379,7 @@ class FilterableTable extends React.Component {
 					autofocusFilter={this.props.autofocusFilter}
 				>
 				</Header>
-				
+
 
 				<div className="table-container">
 					{loading}

@@ -56,6 +56,7 @@ ReactDOM.render(
 			initialSort="name"
 			data={data}
 			fields={fields}
+			filterPlaceholder="Search"
 			roRecordsMessage="There are no people to display"
 			noFilteredRecordsMessage="No people match your filters!"
 		/>
